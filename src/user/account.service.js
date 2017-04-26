@@ -1,5 +1,5 @@
 import * as accountModel from './account.model';
-import * as authUtils from './auth.utils';
+import * as authUtils from '../utils/auth.utils';
 
 export const createAccount = (email, password) =>
     accountModel.getByEmail(email)

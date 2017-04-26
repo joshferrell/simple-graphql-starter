@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`graph-ql utilities should filter out input fields 1`] = `
+Object {
+  "email": Object {
+    "description": "The email of the account, must be unique",
+    "type": "string",
+  },
+  "password": Object {
+    "description": "Login password of the account",
+    "type": "string",
+  },
+}
+`;
+
+exports[`graph-ql utilities should filter out output fields 1`] = `
+Object {
+  "email": Object {
+    "description": "The email of the account, must be unique",
+    "type": "string",
+  },
+  "id": Object {
+    "description": "The UUID of the account",
+    "type": "id",
+  },
+}
+`;
