@@ -1,7 +1,7 @@
 {
-  "name": "ds-meetup",
-  "version": "1.0.0",
-  "description": "Simple GraphQL server tutorial for the ds meetup at Pivotal",
+  "name": "steam-game-lookup",
+  "version": "0.1.0",
+  "description": "Lookup games for users using graphql",
   "main": "index.js",
   "tags": [
     "graphql",
@@ -14,7 +14,7 @@
     "start": "DEBUG=true nodemon src/server.js --exec babel-node",
     "lint": "eslint ./src/**/*.js"
   },
-  "author": "Michael Paris",
+  "author": "Josh Ferrell",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.2",

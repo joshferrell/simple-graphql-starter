@@ -1,6 +1,8 @@
 type Author {
   id: ID! # the ! means that every author object _must_ have an id
+  # Description for first name
   firstName: String
+  # Description for last name test
   lastName: String
   posts: [Post] # the list of Posts by this author
 }
