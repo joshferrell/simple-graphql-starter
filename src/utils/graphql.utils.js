@@ -1,11 +1,23 @@
+import { GraphQLNonNull } from 'graphql';
 
-const getSchemaValues = (accumulator, { name, type, description }) => {
-    accumulator[name] = {
+const getSchemaValues = (
+    accumulator,
+    {
+        name,
         type,
-        description
-    };
-    return accumulator;
-};
+        isRequired,
+        isInput,
+        definition
+    }
+) =>
+    Object.assign({}, accumulator, {
+        [name]: {
+            type: (isInput && isRequired) ?
+                new GraphQLNonNull(type) :
+                type,
+            ...definition
+        }
+    });
 
 export const getInputFields = fields =>
     fields

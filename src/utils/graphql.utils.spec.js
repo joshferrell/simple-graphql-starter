@@ -1,26 +1,45 @@
+import { GraphQLID } from 'graphql';
 import { getInputFields, getOutputFields } from './graphql.utils';
 
 const testSchema = [
     {
         name: 'id',
         type: 'id',
-        description: 'The UUID of the account',
+        definition: {
+            description: 'The UUID of the account'
+        },
         isInput: false,
         isOutput: true
     },
     {
         name: 'email',
         type: 'string',
-        description: 'The email of the account, must be unique',
+        definition: {
+            description: 'The email of the account, must be unique'
+        },
         isInput: true,
         isOutput: true
     },
     {
         name: 'password',
         type: 'string',
-        description: 'Login password of the account',
+        definition: {
+            description: 'Login password of the account'
+        },
         isInput: true,
         isOutput: false
+    }
+];
+
+const testGraphQL = [
+    {
+        name: 'id',
+        type: GraphQLID,
+        definition: {
+            description: 'The UUID of the account'
+        },
+        isInput: true,
+        isRequired: true
     }
 ];
 
@@ -45,5 +64,10 @@ describe('graph-ql utilities', () => {
                 description: 'The email of the account, must be unique'
             }
         });
+    });
+
+    it('should add non null types to required schema', () => {
+        const input = getInputFields(testGraphQL);
+        expect(input).toMatchSnapshot();
     });
 });

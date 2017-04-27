@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`graph-ql utilities should add non null types to required schema 1`] = `
+Object {
+  "id": Object {
+    "description": "The UUID of the account",
+    "type": "ID!",
+  },
+}
+`;
+
 exports[`graph-ql utilities should filter out input fields 1`] = `
 Object {
   "email": Object {

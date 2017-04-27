@@ -5,28 +5,36 @@ const fields = [
     {
         name: 'id',
         type: graphql.GraphQLID,
-        description: 'The UUID of the account',
-        isInput: false,
+        definition: {
+            description: 'The UUID of the account'
+        },
         isOutput: true
     },
     {
         name: 'email',
         type: graphql.GraphQLString,
-        description: 'The email of the account, must be unique',
+        definition: {
+            description: 'The email of the account, must be unique'
+        },
         isInput: true,
-        isOutput: true
+        isOutput: true,
+        isRequired: true
     },
     {
         name: 'password',
         type: graphql.GraphQLString,
-        description: 'Login password of the account',
+        definition: {
+            description: 'Login password of the account'
+        },
         isInput: true,
-        isOutput: false
+        isRequired: true
     },
     {
         name: 'steamId',
         type: graphql.GraphQLString,
-        description: 'Steam ID of the account',
+        definition: {
+            description: 'Steam ID of the account'
+        },
         isInput: true,
         isOutput: true
     }

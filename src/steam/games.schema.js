@@ -5,22 +5,25 @@ const fields = [
     {
         name: 'id',
         type: graphql.GraphQLID,
-        description: 'The id of the game',
-        isInput: false,
+        definition: {
+            description: 'The id of the game'
+        },
         isOutput: true
     },
     {
         name: 'title',
         type: graphql.GraphQLString,
-        description: 'The title of the game',
-        isInput: false,
+        definition: {
+            description: 'The title of the game'
+        },
         isOutput: true
     },
     {
         name: 'playTime',
         type: graphql.GraphQLInt,
-        description: 'The number of hours the steam account has played the game',
-        isInput: false,
+        definition: {
+            description: 'The number of hours the steam account has played the game'
+        },
         isOutput: true
     }
 ];

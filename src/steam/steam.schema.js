@@ -7,22 +7,25 @@ const fields = [
     {
         name: 'steamid',
         type: graphql.GraphQLID,
-        description: 'The steam id of the account',
-        isInput: false,
+        definition: {
+            description: 'The steam id of the account'
+        },
         isOutput: true
     },
     {
         name: 'account',
         type: accountType,
-        description: 'The user account associated with the steam id',
-        isInput: false,
+        definition: {
+            description: 'The user account associated with the steam id'
+        },
         isOutput: true
     },
     {
         name: 'games',
         type: new graphql.GraphQLList(gameType),
-        description: 'A list of steam games that the user has purchased',
-        isInput: false,
+        definition: {
+            description: 'A list of steam games that the user has purchased'
+        },
         isOutput: true
     }
 ];
