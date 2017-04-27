@@ -27,6 +27,14 @@ const fields = [
             description: 'A list of steam games that the user has purchased'
         },
         isOutput: true
+    },
+    {
+        name: 'vanityUrl',
+        type: graphql.GraphQLString,
+        definition: {
+            description: 'The vanity url for a steam account'
+        },
+        isOutput: true
     }
 ];
 

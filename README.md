@@ -38,3 +38,8 @@ The following environment variables are required to run in a file called `dev.en
 * `yarn test` | run through unit tests for the server
 * `yarn lint` | ensure that the server passes linter tests
 * `yarn coverage` | run through jest coverages
+
+### TODO
+* Add bunyan logger
+* Create docker build file
+* Complete schema definitions for graphql

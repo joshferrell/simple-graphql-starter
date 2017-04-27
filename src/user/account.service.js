@@ -17,3 +17,9 @@ export const setSteamId = (accountId, steamId) =>
 export const verifyAccountPassword = (email, inputPassword) =>
     accountModel.getByEmail(email)
         .then(({ password }) => authUtils.comparePassword(inputPassword, password));
+
+export const getAccountById = id =>
+    accountModel.get(id)
+        .then(account => (
+            account || Promise.reject(new Error('Account does not exist.'))
+        ));

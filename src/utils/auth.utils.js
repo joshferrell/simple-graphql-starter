@@ -4,7 +4,8 @@ import moment from 'moment';
 import config from '../config/index';
 
 export const hashPassword = password =>
-    bcrypt.hash(password, config.saltRounds);
+    bcrypt.hash(password, config.tokens.saltRounds);
+
 
 export const generateJwt = (tokenBody, expirationTime = moment()) =>
     new Promise((resolve, reject) => {
