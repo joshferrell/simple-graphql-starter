@@ -1,6 +1,5 @@
 import { sqlConnection, ormInit } from '../db/index';
 import { createAccount, setSteamId, loginToAccount } from './account.service';
-import { getByEmail } from './account.model';
 import config from '../config/index';
 
 describe('account management', () => {

@@ -1,4 +1,4 @@
-import { GraphQLNonNull, GraphQLString, GraphQLBool } from 'graphql';
+import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { accountType, accountInputType, deleteAccount, setSteamId } from './account.schema';
 import { createAccount } from './index';
 
