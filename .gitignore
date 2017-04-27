@@ -2,6 +2,7 @@ node_modules
 *.logs
 *.env
 .key
+coverage
 
 # OS generated files #
 ######################

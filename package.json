@@ -12,7 +12,8 @@
   "scripts": {
     "test": "DEBUG=true jest --watch",
     "start": "DEBUG=true nodemon src/server.js --exec babel-node",
-    "lint": "eslint ./src/**/*.js"
+    "lint": "eslint ./src/**/*.js",
+    "coverage": "DEBUG=true jest --coverage"
   },
   "author": "Josh Ferrell",
   "license": "ISC",
@@ -44,6 +45,15 @@
     "eslint-plugin-react": "^6.10.3",
     "jest": "^19.0.2",
     "nodemon": "^1.11.0"
+  },
+  "jest": {
+      "collectCoverageFrom" : [
+          "src/**/*.{js,jsx}",
+          "!**/node_modules/**",
+          "!**/vendor/**",
+          "!**/index.js",
+          "!**/*.schema.js"
+      ]
   },
   "repository": "git@github.com:joshferrell/simple-graphql-starter.git"
 }

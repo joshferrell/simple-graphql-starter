@@ -37,3 +37,4 @@ The following environment variables are required to run in a file called `dev.en
 * `yarn start` | start the graphql server
 * `yarn test` | run through unit tests for the server
 * `yarn lint` | ensure that the server passes linter tests
+* `yarn coverage` | run through jest coverages
