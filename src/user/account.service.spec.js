@@ -1,5 +1,5 @@
 import { sqlConnection, ormInit } from '../db/index';
-import { createAccount, setSteamId } from './account.service';
+import { createAccount, setSteamId, loginToAccount } from './account.service';
 import { getByEmail } from './account.model';
 import config from '../config/index';
 
@@ -27,14 +27,14 @@ describe('account management', () => {
         expect(createAccount('bad@test.com', 'secure')).rejects
     );
 
-    it('should allow you to set a steam id to an existing account', async () => {
-        const email = await getByEmail('jf@test.com');
-        const account = await setSteamId(email.id, '123');
+    it.only('should allow you to set a steam id to an existing account', async () => {
+        const { token } = await loginToAccount('jf@test.com', 'secure');
+        const account = await setSteamId(token, '123');
 
         return expect(account.steamId).toBe('123');
     });
 
-    it('should not allow you to set a steam id to an account if the account does not exist', () =>
+    it('should not allow you to set a steam id to an account if the auth token is invalid', () =>
         expect(setSteamId('12345', '123')).rejects
     );
 });

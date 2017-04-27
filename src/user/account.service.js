@@ -12,7 +12,7 @@ export const setSteamId = (token, steamId) =>
     new Promise(async (resolve, reject) => {
         try {
             const decodedToken = await authUtils.decodeJwt(token);
-            const account = await accountModel.setSteamId(steamId);
+            const account = await accountModel.setSteamId(decodedToken.id, steamId);
 
             resolve(
                 Object.assign({}, account, { token: decodedToken })
@@ -47,7 +47,7 @@ export const loginToAccount = (email, password) =>
         }
     });
 
-export const deleteAccount = (token) =>
+export const deleteAccount = token =>
     new Promise(async (resolve, reject) => {
         try {
             const { id } = await authUtils.decodeJwt(token);

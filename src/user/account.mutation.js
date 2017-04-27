@@ -27,7 +27,7 @@ const accountMutation = {
         resolve: (_, args) => setSteamId(args.token, args.steamId)
     },
     deleteAccount: {
-        type: GraphQLBool,
+        type: accountType,
         args: {
             token: {
                 description: 'JWT token issued by account',
