@@ -52,3 +52,6 @@ export const getByEmail = email =>
 export const setSteamId = (id, steamId) =>
     AccountModel.update({ steamId }, { where: { id } })
         .then(() => get(id));
+
+export const deleteAccount = id =>
+    get(id).then(account => account.destroy());

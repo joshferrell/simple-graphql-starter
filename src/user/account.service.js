@@ -8,11 +8,20 @@ export const createAccount = (email, password) =>
         ).then(() => authUtils.hashPassword(password))
         .then(hashedPassword => accountModel.create(email, hashedPassword));
 
-export const setSteamId = (accountId, steamId) =>
-    accountModel.setSteamId(accountId, steamId)
-        .then(account => (
-            account || Promise.reject(new Error('Account does not exist'))
-        ));
+export const setSteamId = (token, steamId) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const decodedToken = await authUtils.decodeJwt(token);
+            const account = await accountModel.setSteamId(steamId);
+
+            resolve(
+                Object.assign({}, account, { token: decodedToken })
+            );
+        } catch (e) {
+            console.log(e);
+            reject('Unable to authenticate user');
+        }
+    });
 
 export const verifyAccountPassword = (email, inputPassword) =>
     accountModel.getByEmail(email)
@@ -32,6 +41,18 @@ export const loginToAccount = (email, password) =>
             const token = await authUtils.generateJwt({ email, id: account.id });
 
             resolve(Object.assign({}, account, { token }));
+        } catch (e) {
+            console.log(e);
+            reject('Unable to login to account');
+        }
+    });
+
+export const deleteAccount = (token) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const { id } = await authUtils.decodeJwt(token);
+            await accountModel.deleteAccount(id);
+            resolve(true);
         } catch (e) {
             console.log(e);
             reject('Unable to login to account');

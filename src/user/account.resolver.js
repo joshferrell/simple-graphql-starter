@@ -1,20 +1,9 @@
-import { GraphQLID, GraphQLNonNull, GraphQLString } from 'graphql';
-import { getAccountById, loginToAccount } from './index';
+import { GraphQLNonNull, GraphQLString } from 'graphql';
+import { loginToAccount } from './index';
 import { accountType } from './account.schema';
 
 const accountResolver = {
     account: {
-        type: accountType,
-        description: 'Get a single account by account id',
-        args: {
-            id: {
-                type: new GraphQLNonNull(GraphQLID),
-                description: 'UUID of the account'
-            }
-        },
-        resolve: ((_, args) => getAccountById(args.id))
-    },
-    accountLogin: {
         type: accountType,
         description: 'Get a jwt token for an account given an email and password',
         args: {
