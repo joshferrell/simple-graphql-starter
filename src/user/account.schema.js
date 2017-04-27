@@ -37,6 +37,35 @@ const fields = [
         },
         isInput: true,
         isOutput: true
+    },
+    {
+        name: 'token',
+        type: graphql.GraphQLString,
+        definition: {
+            description: 'JWT token that was issued to the account'
+        },
+        isOutput: true
+    }
+];
+
+const steamInputFields = [
+    {
+        name: 'steamId',
+        type: graphql.GraphQLString,
+        definition: {
+            description: 'Steam ID of the account'
+        },
+        isInput: true,
+        isRequired: true
+    },
+    {
+        name: 'token',
+        type: graphql.GraphQLString,
+        definition: {
+            description: 'JWT token that was issued to the account'
+        },
+        isInput: true,
+        isRequired: true
     }
 ];
 
@@ -49,4 +78,9 @@ export const accountType = new graphql.GraphQLObjectType({
 export const accountInputType = new graphql.GraphQLInputObjectType({
     name: 'AccountInput',
     fields: getInputFields(fields)
+});
+
+export const accountSteamInput = new graphql.GraphQLInputObjectType({
+    name: 'SteamAccountInput',
+    fields: getInputFields(steamInputFields)
 });

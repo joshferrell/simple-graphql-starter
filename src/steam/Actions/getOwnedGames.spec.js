@@ -1,4 +1,4 @@
-import getOwnedGames from './getOwnedGames.service';
+import getOwnedGames from './getOwnedGames';
 
 describe('Getting owned games from steam', () => {
     it('should return an array of games given a steam id', async () => {

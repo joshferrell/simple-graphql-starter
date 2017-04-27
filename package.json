@@ -52,7 +52,7 @@
           "!**/node_modules/**",
           "!**/vendor/**",
           "!**/index.js",
-          "!**/*.schema.js"
+          "!**/*.{schema,mutation,resolver}.js"
       ]
   },
   "repository": "git@github.com:joshferrell/simple-graphql-starter.git"

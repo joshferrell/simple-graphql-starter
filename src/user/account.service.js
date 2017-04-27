@@ -23,3 +23,17 @@ export const getAccountById = id =>
         .then(account => (
             account || Promise.reject(new Error('Account does not exist.'))
         ));
+
+export const loginToAccount = (email, password) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            await verifyAccountPassword(email, password);
+            const account = await accountModel.getByEmail(email);
+            const token = await authUtils.generateJwt({ email, id: account.id });
+
+            resolve(Object.assign({}, account, { token }));
+        } catch (e) {
+            console.log(e);
+            reject('Unable to login to account');
+        }
+    });

@@ -1,5 +1,5 @@
-import { GraphQLID, GraphQLNonNull } from 'graphql';
-import { getAccountById } from './index';
+import { GraphQLID, GraphQLNonNull, GraphQLString } from 'graphql';
+import { getAccountById, loginToAccount } from './index';
 import { accountType } from './account.schema';
 
 const accountResolver = {
@@ -13,6 +13,21 @@ const accountResolver = {
             }
         },
         resolve: ((_, args) => getAccountById(args.id))
+    },
+    accountLogin: {
+        type: accountType,
+        description: 'Get a jwt token for an account given an email and password',
+        args: {
+            email: {
+                type: new GraphQLNonNull(GraphQLString),
+                description: 'Email for the account'
+            },
+            password: {
+                type: new GraphQLNonNull(GraphQLString),
+                description: 'Password for the account'
+            }
+        },
+        resolve: ((_, args) => loginToAccount(args.email, args.password))
     }
 };
 
