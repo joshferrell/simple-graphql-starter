@@ -15,7 +15,7 @@ export const setSteamId = (token, steamId) =>
             const account = await accountModel.setSteamId(decodedToken.id, steamId);
 
             resolve(
-                Object.assign({}, account, { token: decodedToken })
+                Object.assign({}, account, { token })
             );
         } catch (e) {
             console.log(e);
@@ -38,7 +38,11 @@ export const loginToAccount = (email, password) =>
         try {
             await verifyAccountPassword(email, password);
             const account = await accountModel.getByEmail(email);
-            const token = await authUtils.generateJwt({ email, id: account.id });
+            const token = await authUtils.generateJwt({
+                email,
+                steamId: account.steamId,
+                id: account.id
+            });
 
             resolve(Object.assign({}, account, { token }));
         } catch (e) {
@@ -56,5 +60,23 @@ export const deleteAccount = token =>
         } catch (e) {
             console.log(e);
             reject('Unable to login to account');
+        }
+    });
+
+export const getBySteamId = steamId =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const {
+                id,
+                email
+            } = await accountModel.getBySteamId(steamId);
+
+            resolve({
+                steamId,
+                id,
+                email
+            });
+        } catch (e) {
+            reject('Unable to find account by steam id');
         }
     });

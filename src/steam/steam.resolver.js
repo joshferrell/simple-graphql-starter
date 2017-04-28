@@ -12,7 +12,10 @@ const steamResolver = {
                 description: 'Vanity url for an account (usually the username)'
             }
         },
-        resolve: ((_, { vanityUrl }) => getSteamId(vanityUrl))
+        resolve: ((_, { vanityUrl }) =>
+            getSteamId(vanityUrl)
+                .then(steamId => ({ steamId, vanityUrl }))
+        )
     }
 };
 

@@ -2,8 +2,6 @@ import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 import { accountResolver, accountMutation } from '../user/index';
 import { steamResolver } from '../steam/index';
 
-console.log(steamResolver);
-
 const query = new GraphQLObjectType({
     name: 'QueryType',
     description: 'The root query type',

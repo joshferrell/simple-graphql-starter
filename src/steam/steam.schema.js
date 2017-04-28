@@ -1,6 +1,7 @@
 import * as graphql from 'graphql';
 import { getOutputFields } from '../utils/index';
 import { getOwnedGames, getSteamId } from './index';
+import { getBySteamId } from '../user/account.service';
 import { accountType } from '../user/account.schema';
 import gameType from './games.schema';
 
@@ -19,7 +20,7 @@ const fields = [
         type: accountType,
         definition: {
             description: 'The user account associated with the steam id',
-            resolve: (({ steamId }) => ({id: 'test'}))
+            resolve: (({ steamId }) => getBySteamId(steamId))
         },
         isOutput: true
     },

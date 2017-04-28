@@ -1,10 +1,11 @@
 import fetch from 'node-fetch';
+import { getGameDetails } from '../index';
 import config from '../../config/index';
 
 const getOwnedGames = steamId =>
     new Promise(async (resolve, reject) => {
         const url = `${config.steam.url}/IPlayerService/GetOwnedGames/v0001?key=${config.steam.apiKey}&steamid=${steamId}&format=json`;
-        console.log(steamId, config.steam);
+
         try {
             const res = await fetch(url);
 
@@ -13,7 +14,20 @@ const getOwnedGames = steamId =>
             }
 
             const body = await res.json();
-            resolve(body.response.games);
+            Promise.all(
+                body.response.games.map((game) => {
+                    const title = getGameDetails(game.appid);
+
+                    return ({
+                        id: game.appid,
+                        playTime: game.playtime_forever,
+                        title
+                    });
+                })
+            ).then(results => {
+                console.log(results);
+                resolve(results)
+            });
         } catch (e) {
             console.log(e);
             reject('Unable to access steam api');

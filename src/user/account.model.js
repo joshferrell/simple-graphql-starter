@@ -55,3 +55,7 @@ export const setSteamId = (id, steamId) =>
 
 export const deleteAccount = id =>
     get(id).then(account => account.destroy());
+
+export const getBySteamId = steamId =>
+    AccountModel.findOne({ where: { steamId } })
+        .then(account => getPlain(account));

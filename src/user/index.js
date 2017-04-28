@@ -3,7 +3,9 @@ export {
     setSteamId,
     verifyAccountPassword,
     getAccountById,
-    loginToAccount
+    loginToAccount,
+    getBySteamId,
+    deleteAccount
 } from './account.service';
 export { default as accountResolver } from './account.resolver';
 export { default as accountMutation } from './account.mutation';
