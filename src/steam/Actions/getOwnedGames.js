@@ -24,10 +24,7 @@ const getOwnedGames = steamId =>
                         title
                     });
                 })
-            ).then(results => {
-                console.log(results);
-                resolve(results)
-            });
+            ).then(results => resolve(results));
         } catch (e) {
             console.log(e);
             reject('Unable to access steam api');
