@@ -11,7 +11,7 @@ const {
 
 const sqlConnection = new Sequelize(dbname, user, password, {
     host,
-    port,
+    port: 5432,
     dialect: 'postgres'
 });
 

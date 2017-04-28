@@ -42,7 +42,7 @@ if (environmentVariables.length) {
 }
 
 const config = {
-    name: `${process.env.NAME}-${process.env.PORT}`,
+    name: `${process.env.NAME}`,
     port: process.env.PORT,
     steam: {
         url: 'http://api.steampowered.com',
