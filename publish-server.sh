@@ -38,7 +38,8 @@ docker push $DOCKER_ID_USER/$IMAGE_NAME
 hyper run -d \
     --name $POSTGRES_NAME \
     --env-file=build.env \
-    -P
+    --hostname=$POSTGRES_NAME \
+    -P \
     postgres
 
 echo 'Running: '$CONTAINER_NAME
