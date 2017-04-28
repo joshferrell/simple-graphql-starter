@@ -1,3 +1,5 @@
+import { GraphQLNonNull, GraphQLID } from 'graphql';
+import { getSteamId } from './index';
 import { steamType } from './steam.schema';
 
 const steamResolver = {
@@ -10,6 +12,8 @@ const steamResolver = {
                 description: 'Vanity url for an account (usually the username)'
             }
         },
-        resolve: ((_, args) => getSteamId)
+        resolve: ((_, { vanityUrl }) => getSteamId(vanityUrl))
     }
-}
+};
+
+export default steamResolver;

@@ -31,6 +31,7 @@ The following environment variables are required to run in a file called `dev.en
 
 #### Information for Steam API
 * STEAM_API_KEY
+    * [Get Steam API Key](https://steamcommunity.com/dev/apikey)
 
 ## Available Commands
 

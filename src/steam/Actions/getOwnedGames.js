@@ -4,7 +4,7 @@ import config from '../../config/index';
 const getOwnedGames = steamId =>
     new Promise(async (resolve, reject) => {
         const url = `${config.steam.url}/IPlayerService/GetOwnedGames/v0001?key=${config.steam.apiKey}&steamid=${steamId}&format=json`;
-
+        console.log(steamId, config.steam);
         try {
             const res = await fetch(url);
 

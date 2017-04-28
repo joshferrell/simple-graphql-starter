@@ -15,7 +15,10 @@ const getPlayers = steamUserName =>
             const body = await res.json();
 
             if (body.response.success === 1) {
-                resolve(body.response.steamid);
+                resolve({
+                    steamId: body.response.steamid,
+                    vanityUrl: steamUserName
+                });
             } else {
                 reject('Unable to find steam id');
             }

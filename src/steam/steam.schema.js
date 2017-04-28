@@ -1,5 +1,6 @@
 import * as graphql from 'graphql';
 import { getOutputFields } from '../utils/index';
+import { getOwnedGames, getSteamId } from './index';
 import { accountType } from '../user/account.schema';
 import gameType from './games.schema';
 
@@ -8,7 +9,8 @@ const fields = [
         name: 'steamid',
         type: graphql.GraphQLID,
         definition: {
-            description: 'The steam id of the account'
+            description: 'The steam id of the account',
+            resolve: (({ vanityUrl }) => getSteamId(vanityUrl))
         },
         isOutput: true
     },
@@ -16,7 +18,8 @@ const fields = [
         name: 'account',
         type: accountType,
         definition: {
-            description: 'The user account associated with the steam id'
+            description: 'The user account associated with the steam id',
+            resolve: (({ steamId }) => ({id: 'test'}))
         },
         isOutput: true
     },
@@ -24,7 +27,8 @@ const fields = [
         name: 'games',
         type: new graphql.GraphQLList(gameType),
         definition: {
-            description: 'A list of steam games that the user has purchased'
+            description: 'A list of steam games that the user has purchased',
+            resolve: (({ steamId }) => getOwnedGames(steamId))
         },
         isOutput: true
     },
@@ -39,7 +43,7 @@ const fields = [
 ];
 
 export const steamType = new graphql.GraphQLObjectType({
-    name: 'Steam Account',
+    name: 'steamAccount',
     description: 'A steam account with information',
-    fields: getOutputFields(fields())
+    fields: getOutputFields(fields)
 });
