@@ -40,7 +40,30 @@ The following environment variables are required to run in a file called `dev.en
 * `yarn lint` | ensure that the server passes linter tests
 * `yarn coverage` | run through jest coverages
 
+## Deploy Docker Container
+
+### Pre-Reqs
+Docker must be installed for this to work properly. See the [Docker Installation Guide](https://docs.docker.com/engine/installation/) for information on this.
+
+### Deploy Locally
+
+Some shell scripts have been created for people to be able to deploy their own version of this application. Simply run
+```
+bash ./deploy-server.sh {server name} {port}
+```
+
+### Publish to hyper
+
+#### Pre-Reqs
+
+    * [Install hyper](https://console.hyper.sh/register)
+    * [Setup Docker Hub](https://docs.docker.com/docker-hub/#create-a-docker-id)
+
+#### Run Publish Script
+```
+bash ./publish-server.sh {server name} {port}
+```
+
 ### TODO
 * Add bunyan logger
-* Create docker build file
 * Complete schema definitions for graphql
