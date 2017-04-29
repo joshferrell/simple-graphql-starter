@@ -2,11 +2,40 @@ import * as accountModel from './account.model';
 import * as authUtils from '../utils/auth.utils';
 
 export const createAccount = (email, password) =>
-    accountModel.getByEmail(email)
-        .then(account => (
-            !account ? account : Promise.reject(new Error('Account already registered')))
-        ).then(() => authUtils.hashPassword(password))
-        .then(hashedPassword => accountModel.create(email, hashedPassword));
+    new Promise(async (resolve, reject) => {
+        try {
+            const duplicateAccount = await accountModel.getByEmail(email);
+
+            if (duplicateAccount) {
+                throw new Error('Account already registered');
+            }
+
+            const hashedPassword = await authUtils.hashPassword(password);
+            const { steamId, id } = await accountModel.create(email, hashedPassword);
+
+            const token = await authUtils.generateJwt({
+                email,
+                steamId,
+                id
+            });
+
+            resolve({
+                email,
+                steamId,
+                id,
+                token
+            });
+        } catch (e) {
+            switch (e.message) {
+            case 'Account already registerd':
+                reject('Account already exists, please check forgot password for more information');
+                break;
+            default:
+                reject('Unknown error occured, please check logs or contact code maintainer.');
+                break;
+            }
+        }
+    });
 
 export const setSteamId = (token, steamId) =>
     new Promise(async (resolve, reject) => {
@@ -44,7 +73,9 @@ export const loginToAccount = (email, password) =>
                 id: account.id
             });
 
-            resolve(Object.assign({}, account, { token }));
+            resolve(Object.assign(
+                {}, account, { token })
+            );
         } catch (e) {
             console.log(e);
             reject('Unable to login to account');
@@ -56,7 +87,7 @@ export const deleteAccount = token =>
         try {
             const { id } = await authUtils.decodeJwt(token);
             await accountModel.deleteAccount(id);
-            resolve(true);
+            resolve({ id });
         } catch (e) {
             console.log(e);
             reject('Unable to login to account');

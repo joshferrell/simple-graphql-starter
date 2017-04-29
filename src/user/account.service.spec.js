@@ -18,7 +18,6 @@ describe('account management', () => {
         const account = await createAccount('new@test.com', 'secure');
         expect(account).toHaveProperty('id');
         expect(account).toHaveProperty('email');
-        expect(account).toHaveProperty('password');
         return expect(account).toHaveProperty('steamId');
     });
 
@@ -26,7 +25,7 @@ describe('account management', () => {
         expect(createAccount('bad@test.com', 'secure')).rejects
     );
 
-    it.only('should allow you to set a steam id to an existing account', async () => {
+    it('should allow you to set a steam id to an existing account', async () => {
         const { token } = await loginToAccount('jf@test.com', 'secure');
         const account = await setSteamId(token, '123');
 
