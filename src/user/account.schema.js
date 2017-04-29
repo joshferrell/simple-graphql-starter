@@ -1,5 +1,6 @@
 import * as graphql from 'graphql';
 import { getInputFields, getOutputFields } from '../utils/index';
+import { steamType } from '../steam/steam.schema';
 
 const fields = [
     {
@@ -43,6 +44,15 @@ const fields = [
         type: graphql.GraphQLString,
         definition: {
             description: 'JWT token that was issued to the account'
+        },
+        isOutput: true
+    },
+    {
+        name: 'steamAccount',
+        type: steamType,
+        definition: {
+            description: 'Steam account associated with account',
+            resolve: ({ steamId }) => ({ steamId })
         },
         isOutput: true
     }

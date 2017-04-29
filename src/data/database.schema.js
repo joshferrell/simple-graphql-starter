@@ -1,13 +1,13 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
-import { accountResolver, accountMutation } from '../user/index';
 import { steamResolver } from '../steam/index';
+import { accountResolver, accountMutation } from '../user/index';
 
 const query = new GraphQLObjectType({
     name: 'QueryType',
     description: 'The root query type',
     fields: {
-        ...accountResolver,
-        ...steamResolver
+        ...steamResolver,
+        ...accountResolver
     }
 });
 
