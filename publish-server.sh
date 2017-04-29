@@ -22,12 +22,14 @@ echo 'Stopping and removing: '$CONTAINER_NAME
 set +e
 hyper stop $CONTAINER_NAME
 hyper rm $CONTAINER_NAME
+hyper rmi $CONTAINER_NAME
 set -e
 
 echo 'Stopping and removing: '$POSTGRES_NAME
 set +e
 hyper stop $POSTGRES_NAME
 hyper rm $POSTGRES_NAME
+hyper rmi postgres
 set -e
 
 echo 'Building: '$IMAGE_NAME

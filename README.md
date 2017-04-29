@@ -1,6 +1,6 @@
-# Simple GraphQL Project
+# Simple Steam GraphQL
 
-This is a simple graphql project built with express.js
+This project gets games of a steam user with an account based system. You can create an account and associate that account with a steam id. From there, you can get all games associated with the steam id, or get a steam account from its vanity url.
 
 Built by Josh Ferrell :)
 
@@ -25,6 +25,7 @@ The following environment variables are required to run in a file called `dev.en
 * POSTGRES_PORT
 * POSTGRES_USER
 * POSTGRES_DBNAME
+* POSTGRES_PASSWORD
 * POSTGRES_SYNC_FORCE
     * TYPE: boolean
     * Forces updates on the db for orm building
@@ -66,4 +67,3 @@ bash ./publish-server.sh {server name} {port}
 
 ### TODO
 * Add bunyan logger
-* Complete schema definitions for graphql
